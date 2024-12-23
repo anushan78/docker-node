@@ -25,6 +25,9 @@ app.get("/profile-picture", function (req, res) {
 // use when starting application as docker container
 let mongoUrlDocker = "mongodb://admin:password123@localhost:27017";
 
+// use when starting application as docker container
+let mongoUrlComposeDocker = "mongodb://admin:password123@localhost:27016";
+
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
@@ -35,7 +38,7 @@ app.post("/update-profile", function (req, res) {
   let userObj = req.body;
 
   MongoClient.connect(
-    mongoUrlDocker,
+    mongoUrlComposeDocker,
     //mongoClientOptions,
     function (err, client) {
       if (err) throw err;
@@ -65,7 +68,7 @@ app.get("/get-profile", function (req, res) {
   let response = {};
   // Connect to the db
   MongoClient.connect(
-    mongoUrlDocker,
+    mongoUrlComposeDocker,
     //mongoClientOptions,
     function (err, client) {
       if (err) throw err;
